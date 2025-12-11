@@ -477,7 +477,7 @@
   <div class="slide" id="slide-8">
     <section class="exercise">
       <h2>Slide 8 – Pronunciation 7A: Complete the Sentence</h2>
-      <p><strong>Word Bank:</strong> deal • billion • merger • subscription • theaters</p>
+      <p><strong>Word Bank:</strong> <span id="wb8"></span></p>
       <p class="small">
         Look at the sentence and click "Record", then say the missing word.
         Use a browser that supports speech recognition (Chrome or Edge).
@@ -523,7 +523,7 @@
   <div class="slide" id="slide-9">
     <section class="exercise">
       <h2>Slide 9 – Pronunciation 7B: Say the Word for the Definition</h2>
-      <p><strong>Word Bank:</strong> regulators • acquisition • content • critics • antitrust</p>
+      <p><strong>Word Bank:</strong> <span id="wb9"></span></p>
       <p class="small">Read the definition and say the correct word when you click "Record".</p>
 
       <div class="pron-block">
@@ -899,6 +899,31 @@
     feedback.style.color = "#555";
 
     rec.start();
+    // --- SHUFFLE WORD BANKS FOR PRONUNCIATION SLIDES ---
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function loadWordBanks() {
+  // Slide 8 words
+  let wb8words = ["deal", "billion", "merger", "subscription", "theaters"];
+  shuffleArray(wb8words);
+  document.getElementById("wb8").textContent = wb8words.join(" • ");
+
+  // Slide 9 words
+  let wb9words = ["regulators", "acquisition", "content", "critics", "antitrust"];
+  shuffleArray(wb9words);
+  document.getElementById("wb9").textContent = wb9words.join(" • ");
+}
+
+// Run as soon as content loads
+document.addEventListener("DOMContentLoaded", loadWordBanks);
+
   }
 </script>
 </body>
